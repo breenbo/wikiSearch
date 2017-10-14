@@ -1,28 +1,20 @@
 <?php
-session_start();
+    session_start();
 
-// set SESSION variable iot remind the choice for new submit
-// so user has just to change langage and keep his search.
-// $postValues = array($_POST['langue'], $_POST['article'], $_POST['random']);
-$postValues = array('langue','article','random');
-foreach ($postValues as $value) {
-    if(isset($_POST[$value])){
-        $_SESSION[$value]=$_POST[$value];
+    // set default language : english
+    $_SESSION['langue'] = 'en';
+
+    // set SESSION variable iot remind the choice for new submit
+    // so user has just to change langage and keep his search.
+    $postValues = array('langue','article','random');
+    foreach ($postValues as $value) {
+        if(isset($_POST[$value])){
+            $_SESSION[$value]=$_POST[$value];
+        }
     }
-}
-
-
-// if(isset($_POST['langue'])){
-    // $_SESSION['langue']=$_POST['langue'];
-// }
-// if(isset($_POST['article'])){
-    // $_SESSION['article']=$_POST['article'];
-// }
-// if(isset($_POST['random'])){
-    // $_SESSION['random']=$_POST['random'];
-// }
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,7 +54,8 @@ foreach ($postValues as $value) {
         $xmlContent = simplexml_load_string($urlContent);
     ?>
 
-        <h1 class="title">wikiView</h1>
+<div class='page'>
+        <h1 class="titre">wikiView</h1>
         <form method="POST" action="index.php">
         <!-- submit form when change langage : the SESSION value will be set on each change -->
             <select name='langue' onchange='this.form.submit()'>
@@ -142,6 +135,7 @@ foreach ($postValues as $value) {
         <div id="footer" class="footer">
             Footer with : logo FELB, link to ecowebhosting, twitter and LinkedIn
         </div>
-        <script src="./wikiView.js" type="text/javascript" charset="utf-8"></script>
+        <script src="./wikiview.js" type="text/javascript" charset="utf-8"></script>
+</div>
     </body>
 </html>
