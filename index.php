@@ -3,15 +3,24 @@ session_start();
 
 // set SESSION variable iot remind the choice for new submit
 // so user has just to change langage and keep his search.
-if(isset($_POST['langue'])){
-    $_SESSION['langue']=$_POST['langue'];
+// $postValues = array($_POST['langue'], $_POST['article'], $_POST['random']);
+$postValues = array('langue','article','random');
+foreach ($postValues as $value) {
+    if(isset($_POST[$value])){
+        $_SESSION[$value]=$_POST[$value];
+    }
 }
-if(isset($_POST['article'])){
-    $_SESSION['article']=$_POST['article'];
-}
-if(isset($_POST['random'])){
-    $_SESSION['random']=$_POST['random'];
-}
+
+
+// if(isset($_POST['langue'])){
+    // $_SESSION['langue']=$_POST['langue'];
+// }
+// if(isset($_POST['article'])){
+    // $_SESSION['article']=$_POST['article'];
+// }
+// if(isset($_POST['random'])){
+    // $_SESSION['random']=$_POST['random'];
+// }
 
 ?>
 <!DOCTYPE html>
@@ -21,33 +30,13 @@ if(isset($_POST['random'])){
         <meta name="viewport" content="width=device-width" />
         <!-- online, using CDN -->
         <title>wikiView</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- offline -->
+        <script src="framework/jquery.min.js"></script>
+<!-- online, use CDN -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="wikiview.css" type="text/css">
     </head>
-    <style type="text/css">
-        body {
-            background-color: lightgray;
-        }
-        a {
-            text-decoration: none;
-            color:black;
-        }
-        .card {
-            width: 50vw;
-            border: solid 1px;
-            margin:1vw;
-            background-color: white;
-        }
-        .radio {
-            display:none;
-        }
-        .submit {
-            background-color:pink;
-        }
-        #randomButton {
-            background-color:lightblue;
-        }
-    </style>
     <body>
     <?php
         // $choice="random";
@@ -95,15 +84,13 @@ if(isset($_POST['random'])){
             <input class="radio" type="radio" name="random" value="choosen" checked>
             Article ?
             <input type="text" name="article" placeholder="Please type your research" autofocus="true">
-            <input class="submit" type="submit">
+            <input id="submit" class="button" type="submit">
         </form>
         <!-- Trick to have a clickable button for random articles : hide radio button and use the submit button with tuned label, iot send datas through POST method -->
         <form method="POST">
             <input class="radio" type="radio" name="random" value="random" checked>
-            <input class="submit" type="submit" value="Random Articles">
+            <input id="randomButton" class="button" type="submit" value="Random Articles">
         </form>
-        <div id="randomButton">Random article</div>
-        <div id="result">Results</div>
 
         <?php
             if ($choice=='random'){
@@ -149,6 +136,8 @@ if(isset($_POST['random'])){
             <h3 class="text">3. Expand cards with related article when hover, like file tree</h3>
             <h3 class="text">4. Traditional material design</h3>
             <h3 class="text">5. Flags for different langage</h3>
+            <h3 class="text">6. Message if no article found</h3>
+            <h3 class="text">7. add wikipedia logo in header</h3>
         </div>
         <div id="footer" class="footer">
             Footer with : logo FELB, link to ecowebhosting, twitter and LinkedIn

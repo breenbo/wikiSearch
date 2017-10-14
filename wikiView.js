@@ -1,24 +1,8 @@
-$("#randomButton").click(function() {
-    alert('button clicked');
-});
-
-
-// sedn data to php for onclick event ?
-// function submit(){
-    // var data;
-    // data = {random:"random"};
-    // // extract data from your form and save it to data variable
-    // $.ajax({
-        // // type: "POST",
-        // type: "GET",
-        // url: "index.php",
-        // data: data,
-        // success: function(response){
-            // alert 'success !';
-        // },
-        // error:function(response){
-            // alert 'something wrong';
-        // }
-    // });
-// }
-
+// $(".button").hover(
+    // function() {
+        // $(this).css({
+            // "box-shadow" : "0 1vw 1vw 0 rgba(0, 0, 0, 0.2), 0 1vw 1vw 0 rgba(0, 0, 0, 0.19)",
+            // "transition-duration":"0.1s"
+        // });
+    // }
+// )

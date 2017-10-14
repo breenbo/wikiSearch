@@ -1,0 +1,33 @@
+body {
+    background-color : #F5F5F5;
+    font-family      : 'Roboto', sans-serif;
+}
+a {
+    text-decoration: none;
+    color:black;
+}
+.card {
+    width: 85vw;
+    border: solid 1px;
+    margin:1vw;
+    background-color: white;
+    box-shadow : 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.2), 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.19);
+}
+.radio {
+    display:none;
+}
+.button {
+    font-family      : 'Roboto', sans-serif;
+    border:solid 1px;
+    border-radius:3px;
+    box-shadow : 0 2vw 2vw 0 rgba(0, 0, 0, 0.2), 0 2vw 2vw 0 rgba(0, 0, 0, 0.19);
+}
+.button:hover {
+    box-shadow : 0 1vw 1vw 0 rgba(0, 0, 0, 0.1), 0 1vw 1vw 0 rgba(0, 0, 0, 0.19);
+}
+#submit {
+    background-color:pink;
+}
+#randomButton {
+    background-color:lightblue;
+}
