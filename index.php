@@ -42,12 +42,12 @@
         if ($choice=='random') {
         // get the random articles
             $request = "https://".$langue.".wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=10&format=xml";
-            echo 'some random articles';
-            echo $request;
+            // echo 'some random articles';
+            // echo $request;
         } else if ($choice=='choosen') {
             $request = "https://".$langue.".wikipedia.org/w/api.php?action=opensearch&search=".$article."&namespace=0&format=xml";
-            echo 'some choosen articles';
-            echo $request;
+            // echo 'some choosen articles';
+            // echo $request;
         }
         // fetch and decode content
         $urlContent = file_get_contents($request);
@@ -55,7 +55,9 @@
     ?>
 
 <div class='page'>
-        <h1 class="titre">wikiView</h1>
+    <div class="titre">
+        <h1><img src="./wikipediaLogo.svg">wikiView</h1>
+    </div>
         <form method="POST" action="index.php">
         <!-- submit form when change langage : the SESSION value will be set on each change -->
             <select name='langue' onchange='this.form.submit()'>
@@ -84,6 +86,7 @@
             <input class="radio" type="radio" name="random" value="random" checked>
             <input id="randomButton" class="button" type="submit" value="Random Articles">
         </form>
+</div>
 
         <?php
             if ($choice=='random'){
@@ -136,6 +139,5 @@
             Footer with : logo FELB, link to ecowebhosting, twitter and LinkedIn
         </div>
         <script src="./wikiview.js" type="text/javascript" charset="utf-8"></script>
-</div>
     </body>
 </html>
