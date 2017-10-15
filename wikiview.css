@@ -9,7 +9,6 @@ body {
     grid-template-columns:1fr 4fr 3fr;
     grid-template-rows:auto;
     grid-template-areas:
-       /* "header header search" */
        "header header search"
        "side main main"
        "footer footer footer";
@@ -39,7 +38,7 @@ body {
 
 .main {
     grid-area:main;
-    background-color:purple;
+    background-color:ligthgrey;
     justify-self:stretch;
     border:solid 1px;
 }
@@ -69,32 +68,51 @@ a {
     margin:1vw;
     background-color: white;
     box-shadow : 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.2), 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.19);
+}
+.card:hover {
+    box-shadow : 0.5vw 0.5vw 0.5vw 0 rgba(0, 0, 0, 0.2), 0.5vw 0.5vw 0.5vw 0 rgba(0, 0, 0, 0.19);
+}
+
+.searchCard {
     /* grid to deal with title, pic and description */
     display:grid;
     grid-template-columns:1fr 5fr;
     grid-template-areas:
-    "title title"
+    "pic title"
     "pic description"
 }
+
 .title {
     grid-area:title;
+}
+
+.cardPic {
+    grid-area:pic;
+}
+
+.cardDesc {
+    grid-area:description;
 }
 
 .radio {
     display:none;
 }
+
 .button {
     font-family      : 'Roboto', sans-serif;
     border:solid 1px;
     border-radius:3px;
     box-shadow : 0 2vw 2vw 0 rgba(0, 0, 0, 0.2), 0 2vw 2vw 0 rgba(0, 0, 0, 0.19);
 }
+
 .button:hover {
     box-shadow : 0 1vw 1vw 0 rgba(0, 0, 0, 0.1), 0 1vw 1vw 0 rgba(0, 0, 0, 0.19);
 }
+
 #submit {
     background-color:pink;
 }
+
 #randomButton {
     background-color:lightblue;
 }

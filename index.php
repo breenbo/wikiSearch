@@ -115,18 +115,18 @@
                         foreach ($xmlContent->Section->Item as $item) {
                             // change the picture size with regexp
                             $ImageUrl = $item->Image->attributes();
-                            $bigImageUrl = preg_replace("/..px/", "100px", $ImageUrl);
+                            $bigImageUrl = preg_replace("/..px/", "150px", $ImageUrl);
                             // Display content for all results
-                            echo "  <div class='card'>
+                            echo "  <div class='card searchCard'>
                                     <!-- get picture and content in link iot go to article when click -->
                                         <a class='title' target='_blank' href='".$item->Url."'>
                                             <h3 class='cardTitle'>".$item->Text."</h3>
                                         </a>
                                         <a class='cardPic' target='_blank' href='".$item->Url."'>
-                                            <img class='cardPic' src='".$bigImageUrl."'>
+                                            <img src='".$bigImageUrl."'>
                                         </a>
-                                        <a target='_blank' href='".$item->Url."'>
-                                            <p class='cardDesc'>".$item->Description."</p>
+                                        <a class='cardDesc' target='_blank' href='".$item->Url."'>
+                                            <p>".$item->Description."</p>
                                         </a>
                                     </div>";
                         }
