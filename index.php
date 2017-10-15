@@ -21,7 +21,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <!-- online, using CDN -->
-        <title>wikiView</title>
+        <title>wikiSearch</title>
 <!-- offline -->
         <script src="framework/jquery.min.js"></script>
 <!-- online, use CDN -->
@@ -55,9 +55,26 @@
     ?>
 
 <div class='page'>
-    <div class="titre">
-        <h1><img src="./wikipediaLogo.svg">wikiView</h1>
+<!-- header panel with logo, title, search bar and random button -->
+    <div class="header">
+        <img src="./wikipediaLogo.svg">
+        <h1 class="titre">wikiSearch</h1>
     </div>
+    <div class="search">
+        <form method="POST">
+            <input class="radio" type="radio" name="random" value="choosen" checked>
+            Article ?
+            <input type="text" name="article" placeholder="Please type your research" autofocus="true">
+            <input id="submit" class="button" type="submit">
+        </form>
+        <!-- Trick to have a clickable button for random articles : hide radio button and use the submit button with tuned label, iot send datas through POST method -->
+        <form method="POST">
+            <input class="radio" type="radio" name="random" value="random" checked>
+            <input id="randomButton" class="button" type="submit" value="Random Articles">
+        </form>
+    </div>
+<!-- side panel with language select -->
+    <div class="side">
         <form method="POST" action="index.php">
         <!-- submit form when change langage : the SESSION value will be set on each change -->
             <select name='langue' onchange='this.form.submit()'>
@@ -75,19 +92,9 @@
             ?>
             </select>
         </form>
-        <form method="POST">
-            <input class="radio" type="radio" name="random" value="choosen" checked>
-            Article ?
-            <input type="text" name="article" placeholder="Please type your research" autofocus="true">
-            <input id="submit" class="button" type="submit">
-        </form>
-        <!-- Trick to have a clickable button for random articles : hide radio button and use the submit button with tuned label, iot send datas through POST method -->
-        <form method="POST">
-            <input class="radio" type="radio" name="random" value="random" checked>
-            <input id="randomButton" class="button" type="submit" value="Random Articles">
-        </form>
-</div>
-
+    </div>
+<!-- main panel to display the results of the search -->
+    <div class="main">
         <?php
             if ($choice=='random'){
                 foreach ($xmlContent->query->random->page as $page) {
@@ -112,10 +119,14 @@
                             // Display content for all results
                             echo "  <div class='card'>
                                     <!-- get picture and content in link iot go to article when click -->
+                                        <a class='title' target='_blank' href='".$item->Url."'>
+                                            <h3 class='cardTitle'>".$item->Text."</h3>
+                                        </a>
+                                        <a class='cardPic' target='_blank' href='".$item->Url."'>
+                                            <img class='cardPic' src='".$bigImageUrl."'>
+                                        </a>
                                         <a target='_blank' href='".$item->Url."'>
-                                            <h3 class='title'>".$item->Text."</h3>
-                                            <p class='description'>".$item->Description."</p>
-                                            <img class='pic' src='".$bigImageUrl."'>
+                                            <p class='cardDesc'>".$item->Description."</p>
                                         </a>
                                     </div>";
                         }
@@ -124,20 +135,21 @@
                     }
             }
         ?>
+        <h2 class="todo">Todos :</h2>
+        <h3 class='text'>1. Display flag of choosen language</h3>
+        <h3 class="text">2. Expand resume when hovering, with picture and plan</h3>
+        <h3 class="text">3. Expand cards with related article when hover, like file tree</h3>
+        <h3 class="text">4. Traditional material design</h3>
+        <h3 class="text">5. Flags for different langage</h3>
+        <h3 class="text">6. Message if no article found</h3>
+        <h3 class="text">7. add wikipedia logo in header</h3>
+    </div>
+<!-- footer with FELB, github, twitter and mail form ? -->
+    <div id="footer" class="footer">
+        Footer with : logo FELB, link to ecowebhosting, twitter and LinkedIn
+    </div>
+</div>
 
-        <div class="todo">
-            <h2 class="todo">Todos :</h2>
-            <h3 class='text'>1. Display flag of choosen language</h3>
-            <h3 class="text">2. Expand resume when hovering, with picture and plan</h3>
-            <h3 class="text">3. Expand cards with related article when hover, like file tree</h3>
-            <h3 class="text">4. Traditional material design</h3>
-            <h3 class="text">5. Flags for different langage</h3>
-            <h3 class="text">6. Message if no article found</h3>
-            <h3 class="text">7. add wikipedia logo in header</h3>
-        </div>
-        <div id="footer" class="footer">
-            Footer with : logo FELB, link to ecowebhosting, twitter and LinkedIn
-        </div>
         <script src="./wikiview.js" type="text/javascript" charset="utf-8"></script>
     </body>
 </html>

@@ -5,16 +5,57 @@ body {
 
 .page {
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    /* use fr unit to fill all the display and have responsive design */
+    grid-template-columns:1fr 4fr 3fr;
+    grid-template-rows:auto;
+    grid-template-areas:
+       /* "header header search" */
+       "header header search"
+       "side main main"
+       "footer footer footer";
+    justify-content:center;
 }
-.titre {
-    color:red;
+.header {
+    grid-area:header;
+    align-self:center;
     background-color:lightblue;
-    grid-column-start:1;
-    grid-column-end:4;
+    /* nested grid to align the elements */
+    display:grid;
+    grid-template-columns:auto 1fr;
+    justify-items:start;
+}
+
+.search {
+    grid-area:search;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    justify-items:center;
+}
+
+.side {
+    grid-area:side;
+    background-color:lightgreen;
+}
+
+.main {
+    grid-area:main;
+    background-color:purple;
+    justify-self:stretch;
+    border:solid 1px;
+}
+
+.footer {
+    grid-area:footer;
+    background-color:blue;
 }
 
 form {
+    border:solid 1px;
+    /* align items vertically */
+    align-self:center;
+}
+
+.titre {
     border:solid 1px;
 }
 
@@ -22,13 +63,23 @@ a {
     text-decoration: none;
     color:black;
 }
+
 .card {
-    width: 85vw;
     border: solid 1px;
     margin:1vw;
     background-color: white;
     box-shadow : 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.2), 1vw 1vw 1vw 0 rgba(0, 0, 0, 0.19);
+    /* grid to deal with title, pic and description */
+    display:grid;
+    grid-template-columns:1fr 5fr;
+    grid-template-areas:
+    "title title"
+    "pic description"
 }
+.title {
+    grid-area:title;
+}
+
 .radio {
     display:none;
 }
