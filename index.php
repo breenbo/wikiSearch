@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    // set default language : english
-    $_SESSION['langue'] = 'en';
+    // set default language : prefered browser language.
+    $_SESSION['langue'] = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
 
     // set SESSION variable iot remind the choice for new submit
     // so user has just to change langage and keep his search.
@@ -31,7 +31,6 @@
     </head>
     <body>
     <?php
-        // $choice="random";
         $choice=$_SESSION['random'];
         $langue = $_SESSION['langue'];
         // use htmlspecialchars iot protect from malicious code : ALWAYS DO 
@@ -82,7 +81,6 @@
                 // set the multilanguage selector
                 $lang=array("en"=>"English", "fr"=>"Français", "es"=>"Espagnol", "de"=>"Deutsch", "pt"=>"Portuges", 
                     "it"=>"Italian", "nl"=> "Nederland");
-        // , "ru"=>"Russe", "ar"=>"Arabian", "zh"=>"Chinese");
                 foreach ($lang as $key=>$value) {
                     if ($key==$langue) {
                         echo "<option value='".$key."' selected>".$value."</option>";
@@ -97,6 +95,7 @@
 <!-- main panel to display the results of the search -->
     <div class="main">
         <?php
+            // display titles of random articles
             if ($choice=='random'){
                 foreach ($xmlContent->query->random->page as $page) {
                     // retrieve title and id article
@@ -143,13 +142,10 @@
             }
         ?>
         <h2 class="todo">Todos :</h2>
-        <h3 class='text'>1. Display flag of choosen language</h3>
         <h3 class="text">2. Expand resume when hovering, with picture and plan</h3>
         <h3 class="text">3. Expand cards with related article when hover, like file tree</h3>
         <h3 class="text">4. Traditional material design</h3>
-        <h3 class="text">5. Flags for different langage</h3>
         <h3 class="text">6. Message if no article found</h3>
-        <h3 class="text">7. add wikipedia logo in header</h3>
     </div>
 <!-- footer with FELB, github, twitter and mail form ? -->
     <div id="footer" class="footer">
