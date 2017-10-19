@@ -57,7 +57,7 @@
 <div class='page'>
 <!-- header panel with logo, title, search bar and random button -->
     <div class="header">
-        <img src="./wikipediaLogo.svg">
+        <img src='./wikipediaLogo.svg'>
         <h1 class="titre">wikiSearch</h1>
     </div>
     <div class="search">
@@ -81,7 +81,8 @@
             <?php
                 // set the multilanguage selector
                 $lang=array("en"=>"English", "fr"=>"Français", "es"=>"Espagnol", "de"=>"Deutsch", "pt"=>"Portuges", 
-                    "it"=>"Italian", "nl"=> "Nederland", "ru"=>"Russe", "ar"=>"Arabian", "zh"=>"Chinese");
+                    "it"=>"Italian", "nl"=> "Nederland");
+        // , "ru"=>"Russe", "ar"=>"Arabian", "zh"=>"Chinese");
                 foreach ($lang as $key=>$value) {
                     if ($key==$langue) {
                         echo "<option value='".$key."' selected>".$value."</option>";
@@ -122,8 +123,14 @@
                                         <a class='title' target='_blank' href='".$item->Url."'>
                                             <h3 class='cardTitle'>".$item->Text."</h3>
                                         </a>
-                                        <a class='cardPic' target='_blank' href='".$item->Url."'>
-                                            <img src='".$bigImageUrl."'>
+                                        <a class='cardPic' target='_blank' href='".$item->Url."'>";
+                            //
+                                            // Change http image request to URI to speed up site
+                            //
+                                            $type=pathinfo($bigImageUrl, PATHINFO_EXTENSION);
+                                            $data=file_get_contents($bigImageUrl);
+                                            $imgURI = 'data:image/'.$type.';base64,'.base64_encode($data);
+                                            echo "<img src='".$imgURI."'>
                                         </a>
                                         <a class='cardDesc' target='_blank' href='".$item->Url."'>
                                             <p>".$item->Description."</p>
